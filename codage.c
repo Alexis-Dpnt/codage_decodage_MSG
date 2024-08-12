@@ -3,12 +3,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void codage(char **argv)
+void codage(char *fichier)
 {
     char c;
     char *content_doc;
     int i;
-    int Ropen = open(argv[1], O_RDONLY);                       //ouverture
+    int Ropen = open(fichier, O_RDONLY);                       //ouverture
     if (Ropen == -1)
     {
         ft_putstr("Erreur lors de l'ouverture du fichier\n");
@@ -28,7 +28,7 @@ void codage(char **argv)
         }
         i++;
     }
-    int Wopen = open(argv[1], O_WRONLY | O_TRUNC);                      //ouverture
+    int Wopen = open(fichier, O_WRONLY | O_TRUNC);                      //ouverture
     if (Wopen == -1)
     {
         ft_putstr("Erreur lors de l'ouverture du fichier\n");

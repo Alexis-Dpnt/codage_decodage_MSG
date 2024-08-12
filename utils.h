@@ -10,8 +10,8 @@
 void ft_putstr(char *str);
 char *doc_content(int fd, char c, int oct);
 char *doc_contentW(int fd, char c, int oct);
-void codage(char **argv);
-void decodage(char **argv);
-void see_result(char **argv);
+void codage(char *fichier);
+void decodage(char *fichier);
+void see_result(char *fichier);
 
 #endif

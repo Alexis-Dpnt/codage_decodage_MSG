@@ -3,13 +3,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void decodage(char **argv)
+void decodage(char *fichier)
 {
     int i;
     char *content_doc;
     char c;
-
-    int Ropen = open(argv[1], O_RDONLY);
+    int Ropen = open(fichier, O_RDONLY);
     if (Ropen == -1)
     {
         ft_putstr("Erreur lors de l'ouverture du fichier\n");
@@ -29,13 +28,14 @@ void decodage(char **argv)
         }
         i++;
     }
-    int Wopen = open(argv[1], O_WRONLY, O_TRUNC);
+    int Wopen = open(fichier, O_WRONLY, O_TRUNC);
     if (Wopen == -1)
     {
         ft_putstr("Erreur lors de l'ouverture du fichier\n");
         return ;
     }
     write(Wopen, content_doc, i);
+    ft_putstr("decodage effectue\n");
     close(Wopen);
     free(content_doc);
     system("read -p 'Appuyez sur Entrée pour continuer...' var");
