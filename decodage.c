@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   decodage.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alexis <alexis@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 22:49:55 by alexis            #+#    #+#             */
-/*   Updated: 2024/08/12 12:08:05 by alexis           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "utils.h"
 #include <fcntl.h>
 #include <unistd.h>
@@ -20,10 +8,11 @@ void decodage(char **argv)
     int i;
     char *content_doc;
     char c;
+
     int Ropen = open(argv[1], O_RDONLY);
     if (Ropen == -1)
     {
-        ft_putstr("Erreur lors de l'ouverture du fichier");
+        ft_putstr("Erreur lors de l'ouverture du fichier\n");
         return ;
     }
     content_doc = doc_content(Ropen, c, 1);
@@ -35,7 +24,7 @@ void decodage(char **argv)
             content_doc[i] += 64;
         else if (content_doc[i] >= 'A' && content_doc[i] <= 'Z')
         {
-            ft_putstr("erreur, les majuscules ne sont pas acceptees.");
+            ft_putstr("erreur, les majuscules ne sont pas acceptees.\n");
             return ;
         }
         i++;
@@ -43,10 +32,12 @@ void decodage(char **argv)
     int Wopen = open(argv[1], O_WRONLY, O_TRUNC);
     if (Wopen == -1)
     {
-        ft_putstr("Erreur lors de l'ouverture du fichier");
+        ft_putstr("Erreur lors de l'ouverture du fichier\n");
         return ;
     }
     write(Wopen, content_doc, i);
-    close(Wopen);                                                       //fermeture
+    close(Wopen);
     free(content_doc);
+    system("read -p 'Appuyez sur Entrée pour continuer...' var");
+    system("clear");
 }
